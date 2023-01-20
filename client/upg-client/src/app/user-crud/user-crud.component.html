@@ -1,0 +1,14 @@
+<form [formGroup]="crudForm" >
+
+  <label for="first-name">Name: </label>
+  <input id="first-name" type="text" formControlName="name">
+
+  <label for="last-name">Surname: </label>
+  <input id="Surname" type="text" formControlName="surname">
+  
+  <label for="last-name">City: </label>
+  <input id="City" type="text" formControlName="city">
+  
+</form>
+
+<button (click)="onSubmit()">add user</button>

@@ -16,6 +16,11 @@ export async function getUsers(){
     return rows;
 }
 
+export async function deleteUser(id){
+    const [rows] = await pool.query(`DELETE FROM upg_test WHERE id=?`, [id]);
+    return `user:${id}`;
+}
+
 export async function getUser(id){
     const [rows] = await pool.query(`
     SELECT * FROM 
@@ -24,10 +29,10 @@ export async function getUser(id){
     return rows;
 }
 
-export async function createUser(id_upg,name,surname,upg_testcol,city,id){
+export async function createUser(name,surname,city){
     const [newRows] = await pool.query(
-    `INSERT INTO upg_test (id_upg,name,surname,upg_testcol,city,id) VALUES (?,?,?,?,?,?)`,
-    [id_upg,name,surname,upg_testcol,city,id]);
+    `INSERT INTO upg_test (name,surname,city) VALUES (?,?,?)`,
+    [name,surname,city]);
     return newRows;
     
 }

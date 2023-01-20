@@ -1,25 +1,33 @@
 import express from 'express'
 const app = express();
 
-import {getUsers, getUser, createUser} from './database.js'
+import {getUsers, getUser, createUser, deleteUser} from './database.js'
 
 app.use(express.json())
-
+//LIST OF USERS
 app.get("/users", async (req,res)=>{
     const users = await getUsers();
     res.send(users);
 })
 
+//USER
 app.get("/user/:id", async (req,res)=>{
     const id = req.params.id
     const user = await getUser(id);
     res.send(user);
 })
 
+//CREATE USER
 app.post("/createuser", async (req,res) => {
-    const {id_upg,name,surname,upg_testcol,city,id} = req.body
-    const userCreated = await createUser(id_upg,name,surname,upg_testcol,city,id)
+    const {name,surname,city} = req.body
+    const userCreated = await createUser(name,surname,city)
     res.send(userCreated);
+})
+
+app.delete("/deleteuser/:id", async (req,res) => {
+    const id = req.params.id
+    const user = await deleteUser(id);
+    res.send("user");
 })
 
 app.use((err, req, res, next) => {
