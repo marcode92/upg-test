@@ -7,7 +7,7 @@ import { User } from './user-crud/user-crud.component';
   providedIn: 'root'
 })
 export class CrudUserService {
-  basePath ='localhost:8080';
+  basePath ='http://localhost:8080';
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
